@@ -17,6 +17,7 @@ mongoose
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.log(err));
 
+// Root
 app.get('/', (req, res) => res.send('Hello World'));
 
 // Use Routes
