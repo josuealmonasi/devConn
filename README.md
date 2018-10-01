@@ -1,8 +1,9 @@
 # DevConn
+
 DevConn
 
+npm install
 
-npm i
+npm run client-install
 
-
-npm run server
+npm run dev
