@@ -8,8 +8,7 @@
     "server": "nodemon server.js",
     "client-install": "npm install --prefix client",
     "client": "npm start --prefix client",
-    "set-up": "concurrently \"npm install -g create-react-app\" \"npm run client-install\"",
-    "dev": "concurrently \"npm run client\" \"npm run server\""
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Josue Almonasi",
   "license": "MIT",
