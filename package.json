@@ -4,11 +4,12 @@
   "description": "Social network for devs",
   "main": "server.js",
   "scripts": {
-    "client-install": "npm install --prefix client",
     "start": "node server.js",
     "server": "nodemon server.js",
+    "client-install": "npm install --prefix client",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "set-up": "concurrently \"npm install -g create-react-app\" \"npm run client-install\"",
+    "dev": "concurrently \"npm run client\" \"npm run server\""
   },
   "author": "Josue Almonasi",
   "license": "MIT",
