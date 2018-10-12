@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { registeruser } from '../../actions/authActions';
@@ -16,6 +17,18 @@ class Register extends Component {
     };
   }
 
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  };
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevProps.errors !== this.props.errors) {
+      console.log('CDUP fired');
+    }
+  };
+
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -29,7 +42,7 @@ class Register extends Component {
       password2: this.state.password2
     };
     // Call the action
-    this.props.registeruser(newUser);
+    this.props.registeruser(newUser, this.props.history);
   };
 
   render() {
@@ -121,14 +134,16 @@ class Register extends Component {
 
 Register.propTypes = {
   registeruser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors
 });
 
 export default connect(
   mapStateProps,
   { registeruser }
-)(Register);
+)(withRouter(Register));
