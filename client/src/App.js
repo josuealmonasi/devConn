@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
-import Dashboard from './components/dashboard/dashboard';
+import Dashboard from './components/dashboard/Dashboard';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Footer from './components/layout/Footer';
