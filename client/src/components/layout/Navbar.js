@@ -6,89 +6,85 @@ import { logOutUser } from '../../actions/authActions';
 import { clearProfile } from '../../actions/profileActions';
 
 class Navbar extends Component {
-  onLogOutClick = e => {
-    e.preventDefault();
-    this.props.clearProfile();
-    this.props.logOutUser();
-    window.location.href = '/';
-  };
+	onLogOutClick = e => {
+		e.preventDefault();
+		this.props.clearProfile();
+		this.props.logOutUser();
+	};
 
-  render() {
-    const { isAuthenticated, user } = this.props.auth;
+	render() {
+		const { isAuthenticated, user } = this.props.auth;
 
-    const authLinks = (
-      <ul className="navbar-nav ml-auto">
-        <li className="nav-item">
-          <a href="" onClick={this.onLogOutClick} className="nav-link">
-            <img
-              className="rounded-circle"
-              src={user.avatar}
-              style={{ width: '25px', marginRight: '5px' }}
-              alt={user.name}
-            />
-            Logout
-          </a>
-        </li>
-      </ul>
-    );
+		const authLinks = (
+			<ul className="navbar-nav ml-auto">
+				<li className="nav-item">
+					<a href="" onClick={this.onLogOutClick} className="nav-link">
+						<img
+							className="rounded-circle"
+							src={user.avatar}
+							style={{ width: '25px', marginRight: '5px' }}
+							alt={user.name}
+						/>
+						Logout
+					</a>
+				</li>
+			</ul>
+		);
 
-    const guestLinks = (
-      <ul className="navbar-nav ml-auto">
-        <li className="nav-item">
-          <Link className="nav-link" to="/register">
-            Sign Up
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/login">
-            Login
-          </Link>
-        </li>
-      </ul>
-    );
+		const guestLinks = (
+			<ul className="navbar-nav ml-auto">
+				<li className="nav-item">
+					<Link className="nav-link" to="/register">
+						Sign Up
+					</Link>
+				</li>
+				<li className="nav-item">
+					<Link className="nav-link" to="/login">
+						Login
+					</Link>
+				</li>
+			</ul>
+		);
 
-    return (
-      <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
-        <div className="container">
-          <Link className="navbar-brand" to="/">
-            DevConnector
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#mobile-nav"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
+		return (
+			<nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+				<div className="container">
+					<Link className="navbar-brand" to="/">
+						DevConnector
+					</Link>
+					<button
+						className="navbar-toggler"
+						type="button"
+						data-toggle="collapse"
+						data-target="#mobile-nav"
+					>
+						<span className="navbar-toggler-icon" />
+					</button>
 
-          <div className="collapse navbar-collapse" id="mobile-nav">
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <Link className="nav-link" to="/profiles">
-                  {' '}
-                  Developers
-                </Link>
-              </li>
-            </ul>
-            {isAuthenticated ? authLinks : guestLinks}
-          </div>
-        </div>
-      </nav>
-    );
-  }
+					<div className="collapse navbar-collapse" id="mobile-nav">
+						<ul className="navbar-nav mr-auto">
+							<li className="nav-item">
+								<Link className="nav-link" to="/profiles">
+									{' '}
+									Developers
+								</Link>
+							</li>
+						</ul>
+						{isAuthenticated ? authLinks : guestLinks}
+					</div>
+				</div>
+			</nav>
+		);
+	}
 }
 
 Navbar.propTypes = {
-  logOutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+	logOutUser: PropTypes.func.isRequired,
+	auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+	auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { logOutUser, clearProfile }
-)(Navbar);
+export default connect(mapStateToProps, { logOutUser, clearProfile })(Navbar);
